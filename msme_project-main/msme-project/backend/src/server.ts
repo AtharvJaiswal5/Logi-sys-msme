@@ -1,4 +1,6 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
+
 import orderRoutes from "./routes/orderRoutes";
 import shipmentRoutes from "./routes/shipmentRoutes";
 import buyersRoutes from "./routes/buyersRoutes";
@@ -7,7 +9,10 @@ import orderItemRoutes from "./routes/orderItemRoutes";
 
 const app = express();
 
-// ✅ IMPORTANT: JSON middleware FIRST
+// ✅ ADD THIS
+app.use(cors());
+
+// ✅ IMPORTANT: JSON middleware
 app.use(express.json());
 
 // Routes
@@ -22,7 +27,6 @@ app.get("/", (_req: Request, res: Response) => {
   res.send("MSME Backend Running 🚚");
 });
 
-// Start server
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
